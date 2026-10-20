@@ -1,0 +1,8 @@
+# Netlify 배포 설정
+# 홈 화면이 home/index.html 에 있어서, 기본 주소(/)로 들어오면 /home/ 으로 보내요.
+# (주소만 / 로 두는 rewrite 는 home.css, home.js 를 못 찾아서 쓰지 않아요)
+
+[[redirects]]
+  from = "/"
+  to = "/home/"
+  status = 302
