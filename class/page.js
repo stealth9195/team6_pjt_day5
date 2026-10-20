@@ -113,9 +113,11 @@
       price += '<del>' + formatPrice(cls.originalPrice) + '</del>';
     }
     return '' +
-      '<a class="class-card classes-card" href="../booking/index.html?id=' + encodeURIComponent(cls.id) + '">' +
-        '<div class="class-card__image" role="img" aria-label="' + escapeHtml(img.alt) + '"' +
-          ' style="background: var(' + img.color + ')"></div>' +
+      '<a class="class-card classes-card" href="../class-detail/index.html?id=' + encodeURIComponent(cls.id) + '">' +
+        // 사진을 못 불러오면 사진을 지우고 대체 색(img.color)을 보여 줘요
+        '<div class="class-card__image classes-card__image" style="background: var(' + img.color + ')">' +
+          '<img src="' + escapeHtml(img.src) + '" alt="' + escapeHtml(img.alt) + '" loading="lazy" decoding="async" onerror="this.remove()">' +
+        '</div>' +
         '<div>' +
           '<p class="classes-card__category">' + escapeHtml(cls.category) + '</p>' +
           '<p class="class-card__title">' + escapeHtml(cls.title) + '</p>' +

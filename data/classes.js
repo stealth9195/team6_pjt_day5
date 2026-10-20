@@ -7,9 +7,14 @@
  * - 수정이 필요하면 데이터 담당자에게 요청해 주세요.
  */
 (function () {
-  // TODO: style.css 확정 후 실제 변수 이름으로 교체 (디자이너 작업 중)
+  // style.css의 공통 색 변수 이름이에요.
   // 이미지의 tone 값이 이 배열의 번호를 가리켜요. 색을 바꿀 때는 이 배열만 고치면 돼요.
-  const IMAGE_COLORS = ['--color-primary', '--color-secondary', '--color-accent', '--color-surface'];
+  const IMAGE_COLORS = ['--color-step-1', '--color-step-2', '--color-line', '--color-surface'];
+
+  // 사진 위치: 페이지가 모두 한 단계 아래 폴더(예: class-detail/)에 있어서 ../data/images/ 기준이에요.
+  // 사진 출처는 data/images/CREDITS.md에 있어요. 사진을 못 불러오면 color(대체 색)를 써 주세요.
+  const IMAGE_BASE = '../data/images/';
+  const IMAGE_SOURCE = 'Unsplash';
 
   /* ---------- 날짜 도우미 ---------- */
 
@@ -43,11 +48,11 @@
       maxPeople: 6,
       summary: '처음이어도 괜찮아요. 물레 위에서 나만의 머그컵을 빚어요.',
       images: [
-        { tone: 0, alt: '완성된 머그컵' },
-        { tone: 1, alt: '물레 위에서 흙을 다듬는 손' },
-        { tone: 2, alt: '유약을 고르는 모습' },
-        { tone: 3, alt: '햇살이 드는 공방 작업대' },
-        { tone: 1, alt: '가마에서 나온 컵들' }
+        { tone: 0, src: 'c001-1.jpg', alt: '완성된 머그컵', credit: { author: 'cafeconcetto', url: 'https://unsplash.com/photos/4fXPCj0_828' } },
+        { tone: 1, src: 'c001-2.jpg', alt: '물레 위에서 흙을 다듬는 손', credit: { author: 'Earl Wilcox', url: 'https://unsplash.com/photos/iUbsw_VOkbM' } },
+        { tone: 2, src: 'c001-3.jpg', alt: '붓으로 유약을 칠하는 모습', credit: { author: 'Pew Nguyen', url: 'https://unsplash.com/photos/ZgO_ohK2V6A' } },
+        { tone: 3, src: 'c001-4.jpg', alt: '유약을 담은 그릇들', credit: { author: 'Tuan Nguyen', url: 'https://unsplash.com/photos/tGK68eoSsbU' } },
+        { tone: 1, src: 'c001-5.jpg', alt: '가마 앞에 놓인 컵들', credit: { author: 'Viviane Okubo', url: 'https://unsplash.com/photos/2ZnkIsutb4g' } }
       ],
       description: `안녕하세요, 망원동 작은 도자기 공방의 흙손이에요 :)
 손끝으로 흙을 만지다 보면 마음이 몽글몽글 편안해지더라고요. 이 클래스에서는 물레를 직접 돌려서 매일 쓰고 싶은 나만의 머그컵을 만들어요.
@@ -89,11 +94,11 @@
       maxPeople: 4,
       summary: '손바느질로 오래 쓰는 가죽 카드지갑을 완성해요.',
       images: [
-        { tone: 1, alt: '완성된 가죽 카드지갑' },
-        { tone: 0, alt: '가죽 색상 견본' },
-        { tone: 3, alt: '새들 스티치로 꿰매는 손' },
-        { tone: 2, alt: '각인 도구와 이니셜' },
-        { tone: 0, alt: '정돈된 공방 작업대' }
+        { tone: 1, src: 'c002-1.jpg', alt: '완성된 가죽 카드지갑', credit: { author: 'Ethan Rougon', url: 'https://unsplash.com/photos/oIlix2slmsI' } },
+        { tone: 0, src: 'c002-2.jpg', alt: '가죽 색상 견본', credit: { author: 'Kelly Sikkema', url: 'https://unsplash.com/photos/qATevUkntlo' } },
+        { tone: 3, src: 'c002-3.jpg', alt: '가죽을 한 땀씩 꿰매는 손', credit: { author: 'Artem Maltsev', url: 'https://unsplash.com/photos/_ikF9TK2bTs' } },
+        { tone: 2, src: 'c002-4.jpg', alt: '가죽 공예 도구', credit: { author: 'Jamie Hagan', url: 'https://unsplash.com/photos/HG2Ui3Dj7ag' } },
+        { tone: 0, src: 'c002-5.jpg', alt: '정돈된 공방 작업대', credit: { author: 'Joel Lee', url: 'https://unsplash.com/photos/p2dpUK3AfCM' } }
       ],
       description: `안녕하세요. 성수동에서 가죽 공방을 운영하는 바늘땀입니다.
 가죽은 쓰면 쓸수록 손때가 묻어 더 멋스러워지는 소재예요. 이 클래스에서는 재단부터 손바느질, 마감까지 직접 해 보며 카드지갑 하나를 완성합니다.
@@ -134,11 +139,11 @@
       maxPeople: 8,
       summary: '갈색 버터 향이 솔솔, 휘낭시에 두 가지 맛을 구워요.',
       images: [
-        { tone: 2, alt: '갓 구운 휘낭시에' },
-        { tone: 0, alt: '갈색으로 녹인 버터' },
-        { tone: 3, alt: '반죽을 틀에 짜는 모습' },
-        { tone: 1, alt: '포장한 휘낭시에 상자' },
-        { tone: 2, alt: '오븐 앞 작업대' }
+        { tone: 2, src: 'c003-1.jpg', alt: '갓 구운 휘낭시에', credit: { author: 'Luna Hu', url: 'https://unsplash.com/photos/g6-zftnM7VM' } },
+        { tone: 0, src: 'c003-2.jpg', alt: '달군 프라이팬', credit: { author: 'Cristian Guillen', url: 'https://unsplash.com/photos/CqgFTnrdDm0' } },
+        { tone: 3, src: 'c003-3.jpg', alt: '반죽을 짜는 모습', credit: { author: 'Leonardo Cirimbelli', url: 'https://unsplash.com/photos/Mh2mOcRZvCQ' } },
+        { tone: 1, src: 'c003-4.jpg', alt: '상자에 담은 마카롱', credit: { author: 'Haberdoedas', url: 'https://unsplash.com/photos/-IAZcga6uNk' } },
+        { tone: 2, src: 'c003-5.jpg', alt: '오븐 옆 트레이 선반', credit: { author: 'Ambitious Studio* | Rick Barrett', url: 'https://unsplash.com/photos/eNXF-vU-F3w' } }
       ],
       description: `안녕하세요~ 해방촌 베이킹 공방의 오븐곰이에요!
 공방 문을 열면 고소한 버터 향부터 반겨 드려요. 오늘은 겉은 바삭, 속은 촉촉한 휘낭시에를 플레인과 얼그레이 두 가지 맛으로 구워 볼 거예요.
@@ -181,11 +186,11 @@
       maxPeople: 6,
       summary: '그달의 제철 재료로 한 그릇 밥과 곁들이 반찬을 만들어요.',
       images: [
-        { tone: 3, alt: '정갈하게 담은 한 그릇 밥' },
-        { tone: 1, alt: '손질한 제철 채소' },
-        { tone: 0, alt: '냄비에서 끓는 국물' },
-        { tone: 2, alt: '함께 차린 식탁' },
-        { tone: 3, alt: '곁들이 반찬 세 가지' }
+        { tone: 3, src: 'c004-1.jpg', alt: '정갈하게 담은 한 그릇 밥', credit: { author: 'Nikolay Smeh', url: 'https://unsplash.com/photos/gPpbFaEkl00' } },
+        { tone: 1, src: 'c004-2.jpg', alt: '제철 채소', credit: { author: 'Anna Voss', url: 'https://unsplash.com/photos/1ZpWD3Ay9vU' } },
+        { tone: 0, src: 'c004-3.jpg', alt: '냄비에서 끓는 국물', credit: { author: 'jurien huggins', url: 'https://unsplash.com/photos/StMkapA93O4' } },
+        { tone: 2, src: 'c004-4.jpg', alt: '함께 차린 식탁', credit: { author: 'Jakub Kapusnak', url: 'https://unsplash.com/photos/4f4YZfDMLeU' } },
+        { tone: 3, src: 'c004-5.jpg', alt: '곁들이 반찬이 가득한 상', credit: { author: 'Cecelia Chang', url: 'https://unsplash.com/photos/kCkv2HTm3Y8' } }
       ],
       description: `안녕하세요, 소반입니다.
 거창한 요리보다 매일 먹는 밥 한 그릇을 잘 차리는 일이 더 어렵고 소중하다고 생각해요. 이 클래스에서는 그달에 가장 맛있는 재료로 한 그릇 밥과 반찬 두 가지를 만듭니다.
@@ -227,11 +232,11 @@
       maxPeople: 8,
       summary: '펜 선 위에 수채 물감을 얹어 좋아하는 골목 풍경을 그려요.',
       images: [
-        { tone: 1, alt: '완성된 골목 풍경 그림' },
-        { tone: 3, alt: '펜으로 그린 밑그림' },
-        { tone: 2, alt: '수채 팔레트와 붓' },
-        { tone: 0, alt: '한옥 창가 작업 자리' },
-        { tone: 1, alt: '나란히 놓인 수강생 작품들' }
+        { tone: 1, src: 'c005-1.jpg', alt: '수채로 풍경을 그리는 모습', credit: { author: 'M. Ed.', url: 'https://unsplash.com/photos/a-man-sitting-down-while-painting-with-a-brush-9QGZ0_swUkw' } },
+        { tone: 3, src: 'c005-2.jpg', alt: '펜으로 그린 밑그림', credit: { author: 'Kyoshi Reyes', url: 'https://unsplash.com/photos/wodjj9GqzSY' } },
+        { tone: 2, src: 'c005-3.jpg', alt: '수채 팔레트와 붓', credit: { author: 'Callum Hill', url: 'https://unsplash.com/photos/Yt7orZ6v3vc' } },
+        { tone: 0, src: 'c005-4.jpg', alt: '창가 작업 자리', credit: { author: 'Justin Sleight', url: 'https://unsplash.com/photos/uSyTtusi9ls' } },
+        { tone: 1, src: 'c005-5.jpg', alt: '나란히 걸린 그림들', credit: { author: 'Blake Wisz', url: 'https://unsplash.com/photos/Sg4epwbykCU' } }
       ],
       description: `안녕하세요. 서촌에서 드로잉 공방을 운영하는 산책화가입니다.
 매일 지나는 골목도 천천히 들여다보면 그릴 것이 참 많습니다. 이 클래스에서는 펜으로 선을 그리고 수채 물감으로 색을 얹어 엽서 크기의 풍경 한 장을 완성합니다.
@@ -272,11 +277,11 @@
       maxPeople: 6,
       summary: '아이패드로 귀여운 캐릭터 스티커를 그려 바로 써 봐요.',
       images: [
-        { tone: 2, alt: '완성된 캐릭터 스티커' },
-        { tone: 0, alt: '아이패드 화면 속 드로잉' },
-        { tone: 1, alt: '브러시 설정 화면' },
-        { tone: 3, alt: '태블릿이 놓인 작업 책상' },
-        { tone: 2, alt: '메신저에 넣은 스티커 예시' }
+        { tone: 2, src: 'c006-1.jpg', alt: '캐릭터 스티커', credit: { author: 'Didhin Kurian', url: 'https://unsplash.com/photos/GupN8--SeRQ' } },
+        { tone: 0, src: 'c006-2.jpg', alt: '아이패드 화면 속 드로잉', credit: { author: 'Tony Sebastian', url: 'https://unsplash.com/photos/7sWm1yRJZhg' } },
+        { tone: 1, src: 'c006-3.jpg', alt: '펜슬로 그리는 손', credit: { author: 'Balázs Kétyi', url: 'https://unsplash.com/photos/byoBbHSlP5U' } },
+        { tone: 3, src: 'c006-4.jpg', alt: '태블릿이 놓인 작업 책상', credit: { author: 'Salvador Rios', url: 'https://unsplash.com/photos/w3mSws0IAU4' } },
+        { tone: 2, src: 'c006-5.jpg', alt: '빈 화면에서 시작하는 드로잉', credit: { author: 'Kelly Sikkema', url: 'https://unsplash.com/photos/eETLL__2DLo' } }
       ],
       description: `안녕하세요! 디지털 드로잉 공방의 픽셀토끼예요 🐰
 아이패드는 있는데 그림은 어떻게 시작해야 할지 막막하셨죠? 저도 그랬어요! 이 클래스에서는 기본 기능부터 차근차근 익히고, 나만의 캐릭터 스티커를 그려서 바로 써 봐요.
@@ -318,11 +323,11 @@
       maxPeople: 6,
       summary: '그 계절에 가장 예쁜 꽃으로 내 손으로 꽃다발을 묶어요.',
       images: [
-        { tone: 0, alt: '완성된 핸드타이드 꽃다발' },
-        { tone: 2, alt: '양동이에 담긴 계절 꽃' },
-        { tone: 3, alt: '꽃을 나선형으로 잡는 손' },
-        { tone: 1, alt: '포장지와 리본' },
-        { tone: 0, alt: '꽃향기 가득한 공방 안' }
+        { tone: 0, src: 'c007-1.jpg', alt: '완성된 핸드타이드 꽃다발', credit: { author: 'Georg Eiermann', url: 'https://unsplash.com/photos/RUj802f-1ho' } },
+        { tone: 2, src: 'c007-2.jpg', alt: '양동이에 담긴 계절 꽃', credit: { author: 'Hannah Olinger', url: 'https://unsplash.com/photos/CNgHaJwT5Pk' } },
+        { tone: 3, src: 'c007-3.jpg', alt: '꽃을 손에 쥐고 다듬는 모습', credit: { author: 'Zoë Warmerdam', url: 'https://unsplash.com/photos/NYIQd71qBqM' } },
+        { tone: 1, src: 'c007-4.jpg', alt: '포장지와 리본', credit: { author: 'Katie Goertzen', url: 'https://unsplash.com/photos/tViVueds3YI' } },
+        { tone: 0, src: 'c007-5.jpg', alt: '꽃이 가득한 공방 안', credit: { author: 'Aurora Song', url: 'https://unsplash.com/photos/Qk5ZKKPJ5H8' } }
       ],
       description: `안녕하세요, 방배동 꽃 공방의 들꽃이에요.
 꽃을 한 송이씩 골라 손에 쥐다 보면 어느새 마음까지 환해지는 것 같아요. 이 클래스에서는 그 계절에 가장 예쁜 꽃으로 핸드타이드 꽃다발을 직접 묶어 봐요.
@@ -364,11 +369,11 @@
       maxPeople: 5,
       summary: '말린 꽃과 열매로 벽에 걸어 두는 리스를 만들어요.',
       images: [
-        { tone: 3, alt: '벽에 걸린 드라이플라워 리스' },
-        { tone: 1, alt: '종류별로 정리한 드라이플라워' },
-        { tone: 0, alt: '리스 틀에 꽃을 꽂는 모습' },
-        { tone: 2, alt: '열매와 소재 디테일' },
-        { tone: 3, alt: '창가에 놓인 완성작들' }
+        { tone: 3, src: 'c008-1.jpg', alt: '벽에 걸린 드라이플라워 리스', credit: { author: 'Annie Spratt', url: 'https://unsplash.com/photos/234X29Rt9wo' } },
+        { tone: 1, src: 'c008-2.jpg', alt: '종류별로 정리한 드라이플라워', credit: { author: 'micheile henderson', url: 'https://unsplash.com/photos/XPCdZXncj64' } },
+        { tone: 0, src: 'c008-3.jpg', alt: '리스 틀과 재료', credit: { author: 'Fabien TWB', url: 'https://unsplash.com/photos/8yE39sQU3cI' } },
+        { tone: 2, src: 'c008-4.jpg', alt: '열매와 소재 디테일', credit: { author: 'pure julia', url: 'https://unsplash.com/photos/oTRsFRfdlJ0' } },
+        { tone: 3, src: 'c008-5.jpg', alt: '창가에 놓인 드라이플라워', credit: { author: 'Martin Templeman', url: 'https://unsplash.com/photos/GKhwIBk_4cQ' } }
       ],
       description: `안녕하세요. 일산에서 드라이플라워 공방을 하고 있는 마른꽃입니다.
 생화의 화려함과는 또 다른, 말린 꽃만의 차분한 색감을 좋아합니다. 이 클래스에서는 여러 종류의 드라이플라워와 열매로 오래 걸어 둘 수 있는 리스를 만듭니다.
@@ -401,16 +406,16 @@
   /* ---------- 일정 설정 ---------- */
   // days: 오늘로부터 며칠 뒤에 수업이 있는지 (1~30)
   // times: 기본 시간대. 시간대가 2개 이상이면 3의 배수 날에는 마지막 시간대를 쉬어요.
-  // full: 마감(남은 자리 0)으로 보여 줄 '며칠 뒤-시간' 목록
+  // full: 마감(남은 자리 0)으로 보여 줄 '며칠 뒤-시간' 목록 (클래스마다 모든 시간대가 마감인 날이 하루 이상 있게)
   const scheduleSeeds = {
-    c001: { days: [2, 3, 7, 10, 11, 14, 17, 19, 22, 25, 28], times: ['11:00', '14:00'], full: ['2-11:00', '10-14:00'] },
-    c002: { days: [4, 5, 11, 12, 18, 19, 25, 26], times: ['14:00', '19:00'], full: ['4-14:00', '19-19:00'] },
-    c003: { days: [1, 2, 5, 8, 9, 13, 16, 20, 23, 26, 29, 30], times: ['11:00', '14:00', '19:00'], full: ['1-14:00', '8-19:00', '16-11:00'] },
+    c001: { days: [2, 3, 7, 10, 11, 14, 17, 19, 22, 25, 28], times: ['11:00', '14:00'], full: ['2-11:00', '10-14:00', '3-11:00'] },
+    c002: { days: [4, 5, 11, 12, 18, 19, 25, 26], times: ['14:00', '19:00'], full: ['4-14:00', '19-19:00', '12-14:00'] },
+    c003: { days: [1, 2, 5, 8, 9, 13, 16, 20, 23, 26, 29, 30], times: ['11:00', '14:00', '19:00'], full: ['1-14:00', '8-19:00', '16-11:00', '9-11:00', '9-14:00'] },
     c004: { days: [4, 7, 11, 14, 18, 21, 25, 28], times: ['11:00'], full: ['7-11:00'] },
-    c005: { days: [3, 5, 10, 12, 17, 19, 24, 26, 30], times: ['10:00', '14:00'], full: ['5-14:00', '17-10:00'] },
+    c005: { days: [3, 5, 10, 12, 17, 19, 24, 26, 30], times: ['10:00', '14:00'], full: ['5-14:00', '17-10:00', '3-10:00'] },
     c006: { days: [1, 4, 8, 11, 15, 18, 22, 25, 29], times: ['19:00'], full: ['1-19:00', '11-19:00'] },
-    c007: { days: [2, 5, 6, 9, 13, 16, 20, 23, 27, 30], times: ['11:00', '14:00', '16:00'], full: ['2-14:00', '13-11:00'] },
-    c008: { days: [5, 7, 12, 14, 19, 21, 26, 28], times: ['13:00', '16:00'], full: ['7-13:00', '14-16:00'] }
+    c007: { days: [2, 5, 6, 9, 13, 16, 20, 23, 27, 30], times: ['11:00', '14:00', '16:00'], full: ['2-14:00', '13-11:00', '6-11:00', '6-14:00'] },
+    c008: { days: [5, 7, 12, 14, 19, 21, 26, 28], times: ['13:00', '16:00'], full: ['7-13:00', '14-16:00', '12-13:00'] }
   };
 
   // 언제 열어도 같은 패턴이 나오도록 랜덤 대신 계산으로 남은 자리를 정해요.
@@ -442,7 +447,12 @@
   const classes = rawClasses.map(function (cls) {
     return Object.assign({}, cls, {
       images: cls.images.map(function (img) {
-        return { color: IMAGE_COLORS[img.tone], alt: img.alt };
+        return {
+          color: IMAGE_COLORS[img.tone],
+          src: IMAGE_BASE + img.src,
+          alt: img.alt,
+          credit: { author: img.credit.author, url: img.credit.url, source: IMAGE_SOURCE }
+        };
       }),
       rating: getAverageRating(cls.reviews),
       reviewCount: cls.reviews.length,
