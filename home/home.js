@@ -40,9 +40,19 @@
     categories.slice(0, 3).forEach(function (name) {
       var cls = data.getClassesByCategory(name)[0];
       var link = el('a', 'class-card home-card');
-      link.href = '../class/index.html';
+      link.href = '../class-detail/index.html?id=' + encodeURIComponent(cls.id);
 
-      link.appendChild(el('div', 'class-card__image', '이미지 자리'));
+      // 대표 사진은 data/classes.js 의 첫 이미지예요. 못 불러오면 사진을 지우고 대체 색(color)을 보여줘요
+      var cover = cls.images[0];
+      var imageBox = el('div', 'class-card__image');
+      imageBox.style.background = 'var(' + cover.color + ')';
+      var photo = el('img');
+      photo.src = cover.src;
+      photo.alt = cover.alt;
+      photo.loading = 'lazy';
+      photo.addEventListener('error', function () { photo.remove(); });
+      imageBox.appendChild(photo);
+      link.appendChild(imageBox);
 
       var body = el('div');
       body.appendChild(el('p', 'class-card__title', cls.title));
