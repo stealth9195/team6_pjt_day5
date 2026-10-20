@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>클래스 | Freely</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="page.css">
+</head>
+<body data-page="class">
+
+  <!-- 머리글: layout.js가 채워요. 이 줄은 건드리지 않기 -->
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main">
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">클래스</h1>
+        <p class="page-header__lead">카테고리를 고르고, 진행시간이나 요일로 좁힌 뒤, 목록을 넘겨 보세요.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <!-- 카테고리: page.js가 data/classes.js의 getCategories()로 채워요 -->
+        <div class="classes-block classes-narrow">
+          <ul class="categories" id="classes-categories" aria-label="카테고리"></ul>
+        </div>
+
+        <!-- 필터: page.js가 채워요 -->
+        <div class="classes-block classes-narrow">
+          <div class="classes-filter">
+            <p class="classes-filter__label" id="classes-duration-label">진행시간</p>
+            <div class="chips" id="classes-duration" role="group" aria-labelledby="classes-duration-label"></div>
+          </div>
+          <div class="classes-filter">
+            <p class="classes-filter__label" id="classes-day-label">요일</p>
+            <div class="chips" id="classes-day" role="group" aria-labelledby="classes-day-label"></div>
+          </div>
+          <p class="filter-status" id="classes-status" aria-live="polite"></p>
+        </div>
+
+        <!-- 클래스 목록: page.js가 채워요. 카드를 누르면 예약 화면으로 id를 넘겨요 -->
+        <div class="classes-block">
+          <p class="classes-note">목업 데이터예요. 실제 클래스 정보가 아니에요.</p>
+        </div>
+        <div class="classes-block">
+          <div class="classes-grid" id="classes-list"></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- 바닥글: layout.js가 채워요. 이 줄은 건드리지 않기 -->
+  <footer id="site-footer" class="site-footer"></footer>
+
+  <script src="../data/classes.js"></script>
+  <script src="../layout.js"></script>
+  <script src="page.js"></script>
+</body>
+</html>
