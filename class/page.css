@@ -1,0 +1,82 @@
+/* ==========================================================
+   class/page.css : 클래스(제품) 화면 전용 (담당: 윤정연)
+   - 이 파일의 클래스 이름은 모두 classes- 로 시작
+   - 카테고리(.categories), 필터(.chips), 카드(.class-card)는 style.css의 공통 부품
+   - 색, 간격, 글자 크기는 style.css의 var(--이름)만 사용
+   ========================================================== */
+
+.classes-block + .classes-block {
+  margin-top: var(--space-l);
+}
+
+.classes-narrow {
+  max-width: 40em;
+}
+
+.classes-note {
+  font-size: var(--font-size-small);
+  color: var(--color-text-sub);
+}
+
+/* ---------- 필터 ---------- */
+.classes-filter + .classes-filter {
+  margin-top: var(--space-m);
+}
+
+.classes-filter__label {
+  margin-bottom: var(--space-s);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-strong);
+}
+
+/* ---------- 목록 ---------- */
+.classes-grid {
+  display: grid;
+  gap: var(--space-m);
+}
+
+@media (min-width: 48em) {
+  .classes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.classes-empty {
+  color: var(--color-text-sub);
+}
+
+/* ---------- 카드 (공통 .class-card를 링크로 쓰기) ---------- */
+.classes-card {
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--motion-fast) var(--motion-ease);
+}
+
+.classes-card:hover {
+  border-color: var(--color-line-strong);
+}
+
+.classes-card__category,
+.classes-card__host {
+  font-size: var(--font-size-small);
+  color: var(--color-text-sub);
+}
+
+.classes-card__summary {
+  margin-top: var(--space-s);
+  font-size: var(--font-size-small);
+}
+
+.classes-card__price {
+  margin-top: var(--space-s);
+}
+
+.classes-card__price strong {
+  font-weight: var(--font-weight-strong);
+}
+
+.classes-card__price del {
+  margin-left: var(--space-s);
+  font-size: var(--font-size-small);
+  color: var(--color-text-sub);
+}
