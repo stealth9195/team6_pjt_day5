@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<!--
+  모든 페이지는 이 파일을 복사해서 시작해요.
+  1) 내 폴더에 index.html로 복사
+     홈 → index.html(루트) / 클래스 → class/index.html / 예약 → booking/index.html / 회사소개 → about/index.html
+  2) <title>과 <body data-page="...">를 내 페이지로 바꾸기
+     data-page 값: home / class / about (예약은 메뉴에 없고 클래스 목록에서 들어오니 class)
+  3) <main> 안만 채우기. 머리글·바닥글 줄과 공통 파일(style.css, layout.js)은 건드리지 않기
+  ※ 경로는 한 단계 아래 폴더 기준(../). 루트의 index.html은 ../ 를 지워서 써요.
+-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>페이지 이름 | Freely</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- 내 페이지 전용 CSS가 있으면 공통 CSS 다음에: <link rel="stylesheet" href="page.css"> -->
+</head>
+<body data-page="class">
+
+  <!-- 머리글: layout.js가 채워요. 이 줄은 건드리지 않기 -->
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main">
+    <!-- 여기부터 내 페이지 내용 -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">페이지 제목</h1>
+        <p class="page-header__lead">한 줄 설명</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section__title">섹션 제목</h2>
+      </div>
+    </section>
+    <!-- 여기까지 내 페이지 내용 -->
+  </main>
+
+  <!-- 바닥글: layout.js가 채워요. 이 줄은 건드리지 않기 -->
+  <footer id="site-footer" class="site-footer"></footer>
+
+  <!-- 클래스 데이터가 필요한 페이지만: <script src="../data/classes.js"></script> -->
+  <script src="../layout.js"></script>
+  <!-- 내 페이지 전용 JS가 있으면 공통 JS 다음에: <script src="page.js"></script> -->
+</body>
+</html>

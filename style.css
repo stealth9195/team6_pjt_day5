@@ -1,0 +1,474 @@
+/* ==========================================================
+   style.css : 모든 페이지 공통 스타일 (원본: freely_co/freely.html)
+   - 순서: 1) 디자인 값  2) 기본 설정  3) 머리글·바닥글  4) 공통 부품
+   - 페이지 전용 스타일은 여기 넣지 않고 각 페이지 폴더에 따로 둔다
+   ========================================================== */
+
+/* ==========================================================
+   1) 디자인 값 : 색, 글자, 간격, 모양, 움직임은 여기서만 정한다
+   - 다른 곳에는 #색상코드나 px 숫자를 직접 쓰지 않고 var(--이름)만 쓴다
+   - 이름은 '값'이 아니라 '역할'로 짓는다
+   ========================================================== */
+
+:root {
+  /* ----------------------------------------------------------
+     1. 색 : 팔레트 D "프레시 그린"이 기본 적용 중
+        더 차분한 초록(E)으로 바꾸려면 아래 D의 6줄을 지우고
+        E 블록 앞뒤의 주석 표시를 지운 뒤 새로고침
+        글자/배경 대비(WCAG 기준 4.5:1 이상)는 각 블록 위에 계산값을 적어둠
+     ---------------------------------------------------------- */
+
+  /* 팔레트 D "프레시 그린" : 자유롭고 친근한 초록 / 본문 14.0 보조 6.2 포인트 5.0 흰글자 5.3 */
+  --color-bg: #FAFAF8;        /* 페이지 배경: 순백보다 살짝 부드러운 오프화이트, 눈이 편함 */
+  --color-surface: #FFFFFF;   /* 카드 배경: 배경보다 한 단계 밝게 해서 카드가 떠 보이게 */
+  --color-text: #1A2733;      /* 본문 글자: 순검정 대신 아주 짙은 초록빛 먹색 */
+  --color-text-sub: #4B5E70;  /* 보조 글자(진행시간, 장소 등): 본문보다 한 단계 약하게 */
+  --color-accent: #87CEFA;    /* 포인트: 버튼, 선택된 필터, 여정 지도 선. 화면당 1~2곳만 */
+  --color-on-accent: #1A2733; /* 포인트 색 위에 올리는 글자 */
+
+  /* 팔레트 E "포레스트 그린" : 더 차분하고 믿음직한 초록 / 본문 14.6 보조 6.4 포인트 6.0 흰글자 6.5
+  --color-bg: #F4F7F1;
+  --color-surface: #FFFFFF;
+  --color-text: #17261D;
+  --color-text-sub: #4D5E53;
+  --color-accent: #1F6B44;
+  --color-on-accent: #FFFFFF;
+  */
+
+  /* 팔레트와 상관없이 쓰는 색 (포인트 색에서 자동 계산) */
+  --color-line: color-mix(in srgb, var(--color-text) 15%, var(--color-bg));
+                              /* 구분선, 카드 테두리: 본문색을 15%만 섞어 아주 연하게 */
+  --color-line-strong: color-mix(in srgb, var(--color-text) 55%, var(--color-bg));
+                              /* 입력창처럼 '눌러서 쓰는 곳'의 테두리: 배경과 3:1 이상 대비(3개 팔레트 모두 3.3 이상 확인) */
+
+  /* 여정 지도 3단계: 포인트 색의 연한 버전 → 진한 버전 (한 계열 명도 차이) */
+  --color-step-1: color-mix(in srgb, var(--color-accent) 20%, var(--color-bg));  /* 1 찾기: 가장 연함 */
+  --color-step-2: color-mix(in srgb, var(--color-accent) 50%, var(--color-bg));  /* 2 좁히기 */
+  --color-step-3: var(--color-accent);                                           /* 3 훑어보기: 가장 진함 */
+  /* 번호 글자색: 1, 2단계는 --color-text, 3단계는 --color-on-accent 사용 */
+
+  /* ----------------------------------------------------------
+     2. 글자
+     ---------------------------------------------------------- */
+  --font-body: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+                              /* Pretendard가 없으면 뒤의 시스템 서체로 자동 대체됨 */
+  --font-size-small: 0.875rem;  /* 카드 속 보조 정보 */
+  --font-size-body: 1rem;       /* 기본 본문 */
+  --font-size-h3: 1.25rem;      /* 카드 제목, 단계 이름 */
+  --font-size-h2: 1.75rem;      /* 섹션 제목 */
+  --font-size-h1: 2.5rem;       /* 첫 화면 한 줄 소개 */
+  --line-height-body: 1.7;      /* 본문 줄 간격: 넓을수록 여유로운 느낌 */
+  --line-height-title: 1.3;     /* 제목은 촘촘하게: 한눈에 덩어리로 읽히게 */
+  --font-weight-body: 300;
+  --font-weight-strong: 500;    /* 강조는 굵기 하나만 사용 */
+
+  /* ----------------------------------------------------------
+     3. 간격 : 8의 배수만 사용
+     ---------------------------------------------------------- */
+  --space-s: 8px;
+  --space-m: 16px;
+  --space-l: 32px;
+  --space-xl: 64px;
+  --space-section: 96px;        /* 섹션 사이: 한 화면에 메시지 하나가 보이게 */
+  --content-max-width: 1120px;  /* 본문 최대 폭: 너무 넓으면 시선 이동이 길어짐 */
+  --tap-min: 44px;              /* 버튼, 필터 칩 등 손가락으로 누르는 요소의 최소 높이 */
+
+  /* ----------------------------------------------------------
+     4. 모양
+     ---------------------------------------------------------- */
+  --radius-card: 12px;          /* 카드: 너무 둥글지 않게 해서 가볍고 단정한 느낌 */
+  --radius-chip: 999px;         /* 필터 칩, 카테고리 버튼: 완전히 둥글게 (누르는 요소임을 알려줌) */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);   /* 그림자는 한 종류만 */
+
+  /* ----------------------------------------------------------
+     5. 움직임
+     ---------------------------------------------------------- */
+  --motion-fast: 150ms;         /* 버튼 호버, 필터 선택 */
+  --motion-base: 400ms;         /* 스크롤 시 카드 등장, 선 그려지기 */
+  --motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);  /* 빠르게 시작해서 부드럽게 멈춤 */
+}
+
+/* "움직임 줄이기" 설정을 켠 사용자: 모든 움직임을 사실상 없앤다 */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0.01ms;
+    --motion-base: 0.01ms;
+  }
+}
+
+/* ==========================================================
+   2) 기본 설정
+   - 글자 기본값, 페이지 폭(.container), 섹션 간격(.section)
+   - 선 굵기(1~3px)와 미디어쿼리 기준점(em)은 변수로 만들 수 없어 직접 씀
+   ========================================================== */
+
+/* ---------- 기본 ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  word-break: keep-all;          /* 한글 단어 중간에서 줄바꿈 되지 않게 */
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, p, ul, ol, dl, dd {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+
+/* ---------- 레이아웃 ---------- */
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-m);
+}
+
+.section {
+  padding-block: var(--space-xl);
+}
+
+.section__title {
+  margin-bottom: var(--space-l);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--line-height-title);
+}
+
+
+@media (min-width: 48em) {
+  .section {
+    padding-block: var(--space-section);
+  }
+}
+
+/* ==========================================================
+   3) 머리글·바닥글
+   - 머리글/바닥글의 내용은 layout.js가 채움. 여기서는 모양만 정함
+   ========================================================== */
+
+/* 키보드 사용자가 메뉴를 건너뛰고 본문으로 바로 가는 링크 (Tab 키를 누르면 나타남) */
+.skip-link {
+  position: absolute;
+  top: var(--space-s);
+  left: var(--space-m);
+  z-index: 10;
+  padding: var(--space-s) var(--space-m);
+  border-radius: var(--radius-chip);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  transform: translateY(-300%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ---------- 머리글 ---------- */
+.site-header {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  min-height: calc(var(--tap-min) + var(--space-m));
+}
+
+.wordmark {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-strong);
+  text-decoration: none;
+}
+
+.site-nav ul {
+  display: flex;
+  gap: 0;
+}
+
+.site-nav a {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  padding-inline: var(--space-s);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--space-s);
+}
+
+/* 지금 보고 있는 페이지 */
+.site-nav a[aria-current="page"] {
+  font-weight: var(--font-weight-strong);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: var(--space-s);
+}
+
+/* ---------- 바닥글 ---------- */
+.site-footer {
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--color-line);
+  font-size: var(--font-size-small);
+  color: var(--color-text-sub);
+}
+
+/* ==========================================================
+   4) 공통 부품 : 여러 페이지에서 같이 쓰는 부품
+   - 버튼, 카테고리, 필터 칩, 클래스 카드, 자리 표시, 페이지 제목, 입력칸
+   - 두 페이지 이상에서 쓰이면 여기로, 한 페이지에서만 쓰이면 pages/ 안으로
+   - 새 부품이 필요하면 직접 만들지 말고 style.css 담당에게 요청
+   ========================================================== */
+
+/* ---------- 버튼 ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  margin-top: var(--space-l);
+  padding-inline: var(--space-l);
+  border-radius: var(--radius-chip);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: var(--font-weight-strong);
+  text-decoration: none;
+  transition: background var(--motion-fast) var(--motion-ease);
+}
+
+.button:hover {
+  background: color-mix(in srgb, var(--color-accent) 85%, var(--color-text));
+}
+
+
+/* ---------- 1단계: 카테고리 ---------- */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));   /* 5 x 2, 모바일도 2줄 */
+  gap: var(--space-s);
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-s);
+  width: 100%;
+  min-height: var(--tap-min);
+  padding: var(--space-s) 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-card);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-title);
+  text-align: center;
+  white-space: nowrap;   /* '분류 10'처럼 4글자 이름이 두 줄로 꺾이지 않게 */
+  cursor: pointer;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease),
+    background var(--motion-fast) var(--motion-ease);
+}
+
+.category:hover {
+  border-color: var(--color-line);
+}
+
+.category__icon {
+  display: block;
+  width: var(--space-l);
+  aspect-ratio: 1;
+  border-radius: var(--radius-card);
+  background: var(--color-step-1);
+  transition: background var(--motion-fast) var(--motion-ease);
+}
+
+.category[aria-pressed="true"] {
+  border-color: var(--color-accent);
+  background: var(--color-step-1);
+}
+
+.category[aria-pressed="true"] .category__icon {
+  background: var(--color-accent);
+}
+
+
+/* ---------- 2단계: 필터 칩 ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  padding-inline: var(--space-m);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-chip);
+  background: var(--color-surface);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease);
+}
+
+.chip[aria-pressed="true"] {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.chip--placeholder {
+  border-style: dashed;
+  color: var(--color-text-sub);
+  cursor: default;
+}
+
+.filter-status {
+  margin-top: var(--space-m);
+  font-size: var(--font-size-small);
+  color: var(--color-text-sub);
+}
+
+
+/* ---------- 클래스 카드 ---------- */
+.class-card {
+  display: grid;
+  grid-template-columns: calc(var(--space-xl) + var(--space-m)) minmax(0, 1fr);
+  gap: var(--space-m);
+  padding: var(--space-s);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-bg);
+}
+
+.class-card__image {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--color-text) 8%, var(--color-bg));
+  color: var(--color-text-sub);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-title);
+  text-align: center;
+}
+
+.class-card__title {
+  font-weight: var(--font-weight-strong);
+  line-height: var(--line-height-title);
+}
+
+.class-card__meta {
+  display: grid;
+  gap: 0;
+  margin-top: var(--space-s);
+  font-size: var(--font-size-small);
+  color: var(--color-text-sub);
+}
+
+.class-card__meta div {
+  display: flex;
+  gap: var(--space-s);
+}
+
+
+/* ---------- 확인 필요 자리 표시 ---------- */
+.placeholder {
+  max-width: 34em;
+  padding: var(--space-l);
+  border: 2px dashed var(--color-line);
+  border-radius: var(--radius-card);
+  color: var(--color-text-sub);
+}
+
+
+/* ---------- 페이지 제목 (홈을 뺀 모든 페이지의 맨 위) ---------- */
+.page-header {
+  padding-top: var(--space-xl);   /* 아래쪽 간격은 바로 다음 섹션의 위쪽 간격이 대신함 */
+}
+
+.page-header__title {
+  font-size: clamp(var(--font-size-h2), 3vw + 1rem, var(--font-size-h1));
+  font-weight: var(--font-weight-strong);
+  line-height: var(--line-height-title);
+}
+
+.page-header__lead {
+  max-width: 34em;
+  margin-top: var(--space-m);
+  font-size: var(--font-size-h3);
+  color: var(--color-text-sub);
+}
+
+/* ---------- 입력칸 (예약 화면 등) ---------- */
+.field {
+  display: grid;
+  gap: var(--space-s);
+}
+
+.field__label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-strong);
+}
+
+.field__hint {
+  font-size: var(--font-size-small);
+  color: var(--color-text-sub);
+}
+
+.field__input {
+  min-height: var(--tap-min);
+  padding-inline: var(--space-m);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: inherit;
+  font: inherit;
+}
+
+@media (min-width: 48em) {
+  .page-header {
+    padding-top: var(--space-section);
+  }
+}
