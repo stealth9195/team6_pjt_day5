@@ -10,7 +10,7 @@
   'use strict';
 
   var pages = [
-    { key: 'home',  href: 'index.html',       label: '홈' },
+    { key: 'home',  href: 'home/index.html',  label: '홈' },
     { key: 'class', href: 'class/index.html', label: '클래스' },
     { key: 'about', href: 'about/index.html', label: '회사소개' }
   ];
@@ -29,7 +29,7 @@
     header.innerHTML =
       '<a class="skip-link" href="#main">본문으로 건너뛰기</a>' +
       '<div class="container site-header__inner">' +
-        '<a class="wordmark" href="' + root + 'index.html">Freely</a>' +
+        '<a class="wordmark" href="' + root + 'home/index.html">Freely</a>' +
         '<nav class="site-nav" aria-label="주요 메뉴"><ul>' + links + '</ul></nav>' +
       '</div>';
   }
