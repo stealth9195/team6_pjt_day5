@@ -1,0 +1,51 @@
+/* ==========================================================
+   page.css : 회사소개 화면 전용 스타일
+   - 색, 간격, 글자 크기, 모서리는 ../style.css 의 var(--이름)만 사용
+   ========================================================== */
+
+/* ---------- 정보 목록 ---------- */
+.about-info {
+  max-width: 34em;
+  border-top: 1px solid var(--color-line);
+}
+
+.about-info__row {
+  display: grid;
+  gap: 0;
+  padding-block: var(--space-m);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.about-info__row dt {
+  font-size: var(--font-size-small);
+  color: var(--color-text-sub);
+}
+
+/* 안내 문구 */
+.about-note {
+  margin-bottom: var(--space-m);
+  color: var(--color-text-sub);
+  font-size: var(--font-size-small);
+}
+
+/* 지도 영역: 안의 iframe이 꽉 차게 */
+.about-map {
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.about-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (min-width: 40em) {
+  .about-info__row {
+    grid-template-columns: calc(var(--space-section) * 2) minmax(0, 1fr);
+    gap: var(--space-m);
+  }
+}
